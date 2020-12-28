@@ -9,14 +9,21 @@ name: dnet5-grpc
 #   - name: ingress
 #     bindings:
 #       - port: 8080
+#         name: http
+#       - port: 4433
+#         name: https
+#         protocol: https
 #     rules:
-#       - path: /vote
-#         service: voteweb
-#       - path: /results
-#         service: resultsweb
+#       - path: /products
+#         service: products-grpc
+#       - host: grpc.example.com
+#         service: products-grpc
+# #       - path: /results
+# #         service: resultsweb
 services:
 - name: products-grpc
   project: src/Services/Products/Products.Grpc/Products.Grpc.csproj
+  # replicas: 2
 - name: sqlserver
   image: mcr.microsoft.com/mssql/server:2019-latest 
   env:
